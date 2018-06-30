@@ -8,6 +8,26 @@ Install dependencies with:
 npm install
 ```
 
+## MongoDB
+
+This application uses MongoDB.
+
+### MongoDB Server
+
+To start the MongoDB server, you can use:
+
+```
+./bin/mongod --dbpath ./data/db --directoryperdb
+```
+
+### MongoDB Client
+
+To start as MongoDB client, you can use:
+
+```
+./bin/mongo
+```
+
 
 ## Production
 
