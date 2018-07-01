@@ -49,3 +49,20 @@ npm run dev
 NOTE: This mode uses nodemon.
 
 
+## API Documentation
+
+### Base URL
+La ruta base para llamar a todas las APIs...
+http://localhost:3000/apiv1/anuncios
+
+
+### Authentication
+Autenticación....
+
+To paginate results, you can use:
+?skip=3&limit=2
+
+To choose only some fields:
+&fields=nombre tags foto -_id
+
+Al hacer sort, primero lo ordena y luego aplica el resto de filtros
