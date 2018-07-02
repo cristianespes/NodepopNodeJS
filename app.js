@@ -19,6 +19,7 @@ app.use(express.json()); // En el body, si es un JSON lo parse
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser()); // Parsear cookies
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images/anuncios', express.static(path.join(__dirname, 'public/images')));
 
 
 // ----------------- Personalización de la API -----------------

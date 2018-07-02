@@ -2,10 +2,6 @@
 
 const mongoose = require('mongoose');
 
-/**
- * OJO! HAY QUE AÑADIR INDICE A TODOS ESTOS PARÁMETROS!!!!!
- */
-
 // Definimos esquema
 const anuncioSchema = mongoose.Schema({
     nombre: String,
@@ -13,7 +9,14 @@ const anuncioSchema = mongoose.Schema({
     precio: Number,
     foto: String,
     tags: [String]
-}, { collection: 'anuncios' });
+});
+
+// Definimos los tipos de etiquetas
+const tags = ['lifestyle', 'mobile', 'motor', 'work'];
+
+// Indicamos indice a los campos
+anuncioSchema.index({ nombre: 1, venta: 1, precio: -1, foto: 1, tags: 1});
+anuncioSchema.index({ tags:1 });
 
 // Método estático (aplica al modelo, no las instancias)
 anuncioSchema.statics.list = function(filter, skip, limit, fields, sort) {
@@ -27,6 +30,11 @@ anuncioSchema.statics.list = function(filter, skip, limit, fields, sort) {
 
     // Ejecuta la query y devuelve una promesa
     return query.exec();
+};
+
+// Método estático que devuelve un array con los tipos de etiquetas
+anuncioSchema.statics.showTags = function() {
+    return tags;
 };
 
 

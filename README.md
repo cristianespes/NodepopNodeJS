@@ -52,17 +52,27 @@ NOTE: This mode uses nodemon.
 ## API Documentation
 
 ### Base URL
-La ruta base para llamar a todas las APIs...
+To go to the base url, you can use:
 http://localhost:3000/apiv1/anuncios
 
 
 ### Authentication
 Autenticación....
 
+### Methods
+
+
+### Filters
+
+To filter by name, you can use:
+?nombre=Bicicleta
+
 To paginate results, you can use:
 ?skip=3&limit=2
 
-To choose only some fields:
+To choose/show only some fields as shown:
 &fields=nombre tags foto -_id
 
-Al hacer sort, primero lo ordena y luego aplica el resto de filtros
+To order the list by name, you can use:
+?sort=nombre
+Warning: If you use this filter, first will be executed this filter and after the rest of the filters regardless of the order. The final result can be different than excepted.
