@@ -29,6 +29,14 @@ To start as MongoDB client, you can use:
 ```
 
 
+## Upload model files
+
+To upload model files to mongoDB, you can use:
+
+```shell
+npm run installDB
+```
+
 ## Production
 
 To start the application in production mode use:
