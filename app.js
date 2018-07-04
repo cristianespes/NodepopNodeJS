@@ -28,6 +28,7 @@ app.use('/images/anuncios', express.static(path.join(__dirname, 'public/images')
  * Rutas de la API
  */
 app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));
+app.use('/apiv1/usuarios', require('./routes/apiv1/usuarios'));
 
 // Aquí podemos definir VARIABLES GLOBALES para ser usadas en las vistas (templates)
 app.locals.title = 'NodeAPI';

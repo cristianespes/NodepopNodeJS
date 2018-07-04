@@ -45,7 +45,6 @@ To start the application in production mode use:
 npm start
 ```
 
-
 ## Development
 
 To start the application in development mode use:
@@ -57,6 +56,15 @@ npm run dev
 NOTE: This mode uses nodemon.
 
 
+## Cluster
+
+To start the application in cluster mode use:
+
+```shell
+npm run cluster
+```
+
+
 ## API Documentation
 
 ### Base URL
@@ -65,7 +73,13 @@ http://localhost:3000/apiv1/anuncios
 
 
 ### Authentication
-Autenticación....
+
+To obtain a token make a POST to: /apiv1/usuarios/login
+
+Use that token in the rest of request in:
+    - header: 'x-access-token'
+    - body: token
+    - query string: token
 
 ### Methods
 

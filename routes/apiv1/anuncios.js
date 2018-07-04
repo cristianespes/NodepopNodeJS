@@ -6,12 +6,18 @@ const router = express.Router();
 // Cargamos el modelo
 const Anuncio = require('../../models/Anuncio');
 
+// Cargamos el módulo de autentificación
+const jwtAuth = require('../../lib/jwtAuth');
+
 /**
  * GET /
  * Recupera una lista de anuncios
  */
-router.get('/', async (req, res, next) => {
+router.get('/', jwtAuth(), async (req, res, next) => {
     try {
+
+        // El usuario es:
+        console.log(`El usuario autenticado es ${req.user_id}`);
 
         const nombre = req.query.nombre;
         const venta = req.query.venta;
