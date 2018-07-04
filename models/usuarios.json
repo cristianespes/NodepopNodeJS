@@ -1,0 +1,11 @@
+{
+    "documentos": [ {
+            "nombre": "javier",
+            "email": "javier@example.com",
+            "clave": "123123"
+        }, {
+            "nombre": "invitado",
+            "email": "invitado@example.com",
+            "clave": "1234"
+        } ]
+}

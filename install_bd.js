@@ -3,17 +3,17 @@
 const fs = require('fs');
 const path = require('path');
 const Anuncio = require('./models/Anuncio');
-
+const Usuario = require('./models/Usuario');
 
 // Función para eliminar los documentos existentes de la colección
-function eliminarDocumentos() {
-    return Anuncio.remove(function(err, removed) {
+function eliminarDocumento(documento) {
+    return documento.remove(function(err, removed) {
         if (err) {
             console.log('HA HABIDO UN ERROR');
             return;
         }
         // where removed is the count of removed documents
-        removed.n === 1 ? console.log(`Se ha eliminado ${removed.n} anuncio`) : console.log(`Se han eliminado ${removed.n} anuncios`);
+        removed.n === 1 ? console.log(`Se ha eliminado ${removed.n} usuario`) : console.log(`Se han eliminado ${removed.n} usuarios`);
     });
 }
 
@@ -31,7 +31,7 @@ function extraerModelos(nombreFichero) {
             }
 
             const packageObject = JSON.parse(data);
-            resolve(packageObject.anuncios);
+            resolve(packageObject.documentos);
         });
 
     });
@@ -45,19 +45,26 @@ const cargarModelos = async function() {
         console.log('Conectado a la base de datos');
 
         // Eliminar documentos existentes de la colección
-        await eliminarDocumentos();
+        await eliminarDocumento(Anuncio);
+        await eliminarDocumento(Usuario);
         console.log('Se han eliminado los documentos existentes');
 
         // Genera un array con todos los modelos
         const arrAnuncios = await extraerModelos('anuncios');
-        //console.log(arrAnuncios);
-
         // Guardar documento en la base de datos
         for (const anuncio of arrAnuncios) {
             const guardarAnuncio = new Anuncio(anuncio);
             await guardarAnuncio.save();
         }
-        console.log('Se ha guardado el documento en la base de datos');
+
+        // Genera un array con todos los modelos
+        const arrUsuarios = await extraerModelos('usuarios');
+        // Guardar documento en la base de datos
+        for (const usuario of arrUsuarios) {
+            const guardarUsuario = new Usuario(usuario);
+            await guardarUsuario.save();
+        }
+        console.log('Se han guardado los documentos en la base de datos');
 
         // Se desconecta de la base de datos
         conn.close(function () {

@@ -1,5 +1,5 @@
 {
-    "anuncios": [ {
+    "documentos": [ {
             "nombre": "Bicicleta",
             "venta": true,
             "precio": 230.15,

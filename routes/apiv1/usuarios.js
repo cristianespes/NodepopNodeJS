@@ -8,7 +8,10 @@ const localConfig = require('../../localConfig');
 // Cargamos el modelo
 const Usuario = require('../../models/Usuario');
 
-router.post('/login', async (req, res, next) => {
+/**
+ * Método para iniciar sesión y obtener un token
+ */
+router.post('/iniciarsesion', async (req, res, next) => {
 
     try {
         // Recoger credenciales
@@ -18,17 +21,16 @@ router.post('/login', async (req, res, next) => {
 
         // Buscar en base de datos
         const usuario = await Usuario.findOne({ email: email }).exec();
-        console.log(usuario);
 
         // Si No encontramos al usuario
         if (!usuario) {
-            res.json({ success: true, message: 'invalid credentials MEG1' });
+            res.json({ success: true, message: 'invalid credentials' });
             return;
         }
 
         // Comprobar el nombre y la clave
         if (clave !== usuario.clave || nombre !== usuario.nombre) {
-            res.json({ success: true, message: 'invalid credentials MEG2' });
+            res.json({ success: true, message: 'invalid credentials' });
             return;
         }
 
@@ -46,5 +48,39 @@ router.post('/login', async (req, res, next) => {
     }
 
 });
+
+
+/**
+ * POST /
+ * Registrar un nuevo usuario
+ */
+router.post('/registrarse', async (req, res, next) => {
+    
+    try {
+
+        // Buscar si existe en la base de datos
+        const existeUsuario = await Usuario.findOne({ email: req.body.email }).exec();
+
+        // Si encontramos al usuario
+        if (existeUsuario) {
+            res.json({ success: true, message: 'email already registered' });
+            return;
+        }
+
+        // Si no existe en la base de datos
+
+        // Crear un usuario en memoria
+        const nuevoUsuario = new Usuario(req.body);
+
+        // Registrar en la Base de Datos
+        const usuarioGuardado = await nuevoUsuario.save();
+        res.json({ success: true, result: usuarioGuardado});
+
+    } catch (err) {
+        next(err);
+    }
+
+});
+
 
 module.exports = router;

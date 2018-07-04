@@ -72,9 +72,18 @@ To go to the base url, you can use:
 http://localhost:3000/apiv1/anuncios
 
 
+### Register User
+
+To register an user make a POST to: /apiv1/usuarios/registrarse
+
+Insert the followings fields:
+    - nombre
+    - email
+    - clave
+
 ### Authentication
 
-To obtain a token make a POST to: /apiv1/usuarios/login
+To obtain a token make a POST to: /apiv1/usuarios/iniciarsesion
 
 Use that token in the rest of request in:
     - header: 'x-access-token'
