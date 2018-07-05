@@ -10,7 +10,7 @@ const crypto = require('crypto');
 function eliminarDocumento(documento) {
     return documento.remove(function(err, removed) {
         if (err) {
-            console.log('Error:', err);
+            console.log('No ha sido posible eliminar los documentos:', err);
             return;
         }
         // where removed is the count of removed documents
@@ -27,7 +27,7 @@ function extraerModelos(nombreFichero) {
         fs.readFile(fichero, 'utf8', (err, data) => { // esta es la opción ASINCRONA! fs.readFile(path, 'utf8' (las opciones), callback);
 
             if (err) {
-                console.log(err);
+                console.log('No ha sido posible extraer los modelos', err);
                 return;
             }
 
@@ -74,7 +74,7 @@ const cargarModelos = async function() {
         });
 
     } catch(err) {
-        console.log('No ha sido posible cargar los usuarios. Error:', err);
+        console.log('No ha sido posible cargar a los usuarios en la base de datos. Error:', err);
     }
     
 };

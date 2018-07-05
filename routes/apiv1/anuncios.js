@@ -143,12 +143,6 @@ router.put('/:id', async (req, res, next) => {
  */
 router.delete('/:id', async (req, res, next) => {
     try {
-        // Si se ha insertado por parte del usuario algún idioma
-        if (req.query.lang) {
-            i18n.setLocale(req.query.lang);
-        }
-        
-        console.log('El texto deberia ser:', i18n.__('Hello i18n'));
         const _id = req.params.id;
 
         // Busca el anuncio y lo elimina

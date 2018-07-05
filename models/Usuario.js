@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 // Definimos esquema
 const usuarioSchema = mongoose.Schema({
     nombre: String,
-    email: { type: String, unique: true }, // unique genera un índice único
+    email: { type: String, unique: true }, // unique genera ya de por sí un índice único
     clave: String
 });
 

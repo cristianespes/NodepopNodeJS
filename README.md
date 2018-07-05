@@ -90,6 +90,17 @@ Use that token in the rest of request in:
     - body: token
     - query string: token
 
+### Language
+
+The language selection is available in:
+    - /apiv1/usuarios/iniciarsesion
+    - /apiv1/usuarios/registrarse
+
+To select the language, you can use:
+    - query string: ?lang=es (or) en
+    - header: Accept-Language = es (or) en
+    - cookies: cookie = es (or) en
+
 ### Methods
 
 

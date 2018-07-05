@@ -1,3 +1,5 @@
 {
-	"Hello i18n": "Hola i18n"
+	"Hello i18n": "Hola i18n",
+	"Invalid credentials": "credenciales inválidas",
+	"email registered": "e-mail ya registrado"
 }
