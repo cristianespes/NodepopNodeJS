@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const localConfig = require('../../localConfig');
+const crypto = require('crypto');
 
 // Cargamos el modelo
 const Usuario = require('../../models/Usuario');
@@ -17,7 +18,7 @@ router.post('/iniciarsesion', async (req, res, next) => {
         // Recoger credenciales
         const nombre = req.body.nombre;
         const email = req.body.email;
-        const clave = req.body.clave;
+        const clave = req.body.clave = crypto.createHash('sha256').update(req.body.clave).digest('base64');
 
         // Buscar en base de datos
         const usuario = await Usuario.findOne({ email: email }).exec();
@@ -28,6 +29,8 @@ router.post('/iniciarsesion', async (req, res, next) => {
             return;
         }
 
+
+        console.log('Comparación','Entrada:',clave, 'Base de datos', usuario.clave);
         // Comprobar el nombre y la clave
         if (clave !== usuario.clave || nombre !== usuario.nombre) {
             res.json({ success: true, message: 'invalid credentials' });
@@ -68,6 +71,7 @@ router.post('/registrarse', async (req, res, next) => {
         }
 
         // Si no existe en la base de datos
+        req.body.clave = crypto.createHash('sha256').update(req.body.clave).digest('base64');
 
         // Crear un usuario en memoria
         const nuevoUsuario = new Usuario(req.body);

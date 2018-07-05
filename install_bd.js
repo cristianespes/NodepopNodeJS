@@ -4,12 +4,13 @@ const fs = require('fs');
 const path = require('path');
 const Anuncio = require('./models/Anuncio');
 const Usuario = require('./models/Usuario');
+const crypto = require('crypto');
 
 // Función para eliminar los documentos existentes de la colección
 function eliminarDocumento(documento) {
     return documento.remove(function(err, removed) {
         if (err) {
-            console.log('HA HABIDO UN ERROR');
+            console.log('Error:', err);
             return;
         }
         // where removed is the count of removed documents
@@ -61,7 +62,8 @@ const cargarModelos = async function() {
         const arrUsuarios = await extraerModelos('usuarios');
         // Guardar documento en la base de datos
         for (const usuario of arrUsuarios) {
-            const guardarUsuario = new Usuario(usuario);
+            let guardarUsuario = new Usuario(usuario);
+            guardarUsuario.clave = crypto.createHash('sha256').update(guardarUsuario.clave).digest('base64');
             await guardarUsuario.save();
         }
         console.log('Se han guardado los documentos en la base de datos');
@@ -72,7 +74,7 @@ const cargarModelos = async function() {
         });
 
     } catch(err) {
-        console.log('No ha sido posible realizar la acción', err);
+        console.log('No ha sido posible cargar los usuarios. Error:', err);
     }
     
 };

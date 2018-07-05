@@ -9,6 +9,8 @@ const Anuncio = require('../../models/Anuncio');
 // Cargamos el módulo de autentificación
 const jwtAuth = require('../../lib/jwtAuth');
 
+const i18n = require('../../lib/i18n');
+
 /**
  * GET /
  * Recupera una lista de anuncios
@@ -141,13 +143,19 @@ router.put('/:id', async (req, res, next) => {
  */
 router.delete('/:id', async (req, res, next) => {
     try {
+        // Si se ha insertado por parte del usuario algún idioma
+        if (req.query.lang) {
+            i18n.setLocale(req.query.lang);
+        }
+        
+        console.log('El texto deberia ser:', i18n.__('Hello i18n'));
         const _id = req.params.id;
 
         // Busca el anuncio y lo elimina
         const anuncioBorrado = await Anuncio.remove({ _id: _id }).exec();
 
         // Una vez borrado el anuncio, respondemos
-        res.json({ success: true, result: anuncioBorrado});
+        res.json({ success: true, result: anuncioBorrado });
 
     } catch(err) {
         next(err);
