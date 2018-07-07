@@ -14,7 +14,7 @@ const anuncioSchema = mongoose.Schema({
 // Definimos los tipos de etiquetas
 const tags = ['lifestyle', 'mobile', 'motor', 'work'];
 
-// Indicamos indice a los campos
+// Indice a los campos
 anuncioSchema.index({ nombre: 1, venta: 1, precio: -1, foto: 1, tags: 1});
 anuncioSchema.index({ tags:1 });
 

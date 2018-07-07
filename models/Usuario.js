@@ -9,7 +9,7 @@ const usuarioSchema = mongoose.Schema({
     clave: String
 });
 
-// Indicamos indice a los campos
+// Indice a los campos
 usuarioSchema.index({ nombre: 1, clave: 1 });
 
 // Creación del modelo
