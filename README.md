@@ -74,31 +74,44 @@ npm run cluster
 
 ## API Documentation
 
-### Register User
 
-To register an user make a POST to: /apiv1/usuarios/registrarse
+### USERS
+
+#### Base URL
+
+To go to the base URL, you can use:
+
+http://localhost:3000/apiv1/usuarios
+
+#### Register User - POST Method
+
+To register an user make a POST to: /registrarse
 
 Insert the followings fields:
+
     - nombre
     - email
     - clave
 
-### Authentication
+#### Authentication - POST Method
 
-To obtain a token make a POST to: /apiv1/usuarios/iniciarsesion
+To obtain a token make a POST to: /iniciarsesion
 
 Use that token in the rest of request in:
+
     - header: 'x-access-token'
     - body: token
     - query string: token=###tokenValue###
 
-### Language
+#### Language
 
 The language selection is available in:
-    - /apiv1/usuarios/iniciarsesion
-    - /apiv1/usuarios/registrarse
+
+    - /iniciarsesion
+    - /registrarse
 
 To select the language, you can use:
+
     - query string:
     ?lang=es (or) en
 
@@ -108,18 +121,22 @@ To select the language, you can use:
     - cookies:
     cookie = es (or) en
 
-### Base URL
 
-To go to the base url, you can use:
-http://localhost:3000/apiv1/anuncios?token=###tokenValue###
+### ADVERTISEMENTS
 
-### Searching
+#### Base URL
+
+To go to the base URL, you can use:
+
+http://localhost:3000/apiv1/anuncios
+
+#### Searching - GET Method
+
+To view all products make a GET adding the token to: ?token=###tokenValue###
 
 To find that you want, you can search directly on the list of the all products.
 
-#### Filters
-
-Or you can use the following filters:
+Or you can add the following filters:
 
     - To filter by name, you can use:
     ?nombre=Bicicleta
@@ -133,15 +150,48 @@ Or you can use the following filters:
     - (*) To order the list by name, you can use:
     ?sort=nombre
 
-Warning: If you use this filter (*), first will be executed this filter and after the rest of the filters regardless of the order. The final result can be different than excepted.
+Warning (*): If you use this filter, first will be executed this filter and after the rest of the filters regardless of the order. The final result can be different than excepted.
 
-#### Images
+#### View Images of the Products - GET Method
 
-To view the images of the products shall be from URL:
+To view the images of the product shall be from base URL:
 
 http://localhost:3000/
 
-#### Tags
+And the product description shows the rest of the path.
+
+#### Tags of the Products - GET Method
 
 To view the available tags of the products, you can use:
+
     - /apiv1/anuncios/tags
+
+#### Upload a new Advertisement - POST Method
+
+To upload a new advertisement make a POST to: /apiv1/anuncios
+
+Insert the followings fields:
+
+    - nombre: article name
+    - venta: true (to sell) or false (to buy)
+    - precio: article price
+    - foto: path to image
+    - tags: choose tags fot the article
+
+#### Update an Advertisement - PUT Method
+
+To update an advertisement make a PUT to: /apiv1/anuncios/###advertisementID###
+
+Insert the new content of the fields to be modified:
+
+    - nombre
+    - venta
+    - precio
+    - foto
+    - tags (*)
+
+Warning (*): This will remove all previous tags and only show the new tags inserted.
+
+#### Delete an Advertisement - DELETE Method
+
+To delete an advertisement make a DELETE to: /apiv1/anuncios/###advertisementID###
