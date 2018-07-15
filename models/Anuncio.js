@@ -15,8 +15,14 @@ const anuncioSchema = mongoose.Schema({
 const tags = ['lifestyle', 'mobile', 'motor', 'work'];
 
 // Indice a los campos
-anuncioSchema.index({ nombre: 1, venta: 1, precio: -1, foto: 1, tags: 1});
+anuncioSchema.index({ nombre: 1 });
+anuncioSchema.index({ venta: 1 });
+anuncioSchema.index({ precio: -1 });
+anuncioSchema.index({ foto: 1 });
 anuncioSchema.index({ tags:1 });
+
+// Esto crea un solo índice con todos esos campos, cuando se hagan búsquedas por venta no servirá
+//anuncioSchema.index({ nombre: 1, venta: 1, precio: -1, foto: 1, tags: 1});
 
 // Método estático (aplica al modelo, no las instancias)
 anuncioSchema.statics.list = function(filter, skip, limit, fields, sort) {
