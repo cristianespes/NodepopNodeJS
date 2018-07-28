@@ -3,25 +3,25 @@
             "nombre": "Bicicleta",
             "venta": true,
             "precio": 230.15,
-            "foto": "images/anuncios/bici.jpg",
+            "foto": "/images/anuncios/bici.jpg",
             "tags": [ "lifestyle", "motor"]
         }, {
             "nombre": "iPhone 6",
             "venta": false,
             "precio": 220.00,
-            "foto": "images/anuncios/iphone-6.jpg",
+            "foto": "/images/anuncios/iphone-6.jpg",
             "tags": [ "lifestyle", "mobile"]
         }, {
             "nombre": "Portatil",
             "venta": false,
             "precio": 560.00,
-            "foto": "images/anuncios/laptop.jpg",
+            "foto": "/images/anuncios/laptop.jpg",
             "tags": [ "lifestyle", "work"]
         }, {
             "nombre": "Reloj",
             "venta": true,
             "precio": 80.00,
-            "foto": "images/anuncios/watch.jpg",
+            "foto": "/images/anuncios/watch.jpg",
             "tags": [ "lifestyle"]
         } ]
 }
