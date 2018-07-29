@@ -82,11 +82,13 @@ npm run cluster
 To go to the base URL, you can use:
 
 http://localhost:3000/apiv1/usuarios
+
 https://nodepop.cristianespes.com/apiv1/usuarios  (Domain for the DevOps Infrastucture)
 
 #### Register User - POST Method
 
 To register an user, make a POST to: /registrarse
+
 http://localhost:3000/apiv1/usuarios/registrarse
 
 Insert the followings fields:
@@ -98,6 +100,7 @@ Insert the followings fields:
 #### Authentication - POST Method
 
 To obtain a token, make a POST to: /iniciarsesion
+
 http://localhost:3000/apiv1/usuarios/iniciarsesion
 
 Use that token in the rest of request in:
@@ -132,11 +135,13 @@ To select the language, you can use:
 To go to the base URL, you can use:
 
 http://localhost:3000/apiv1/anuncios
+
 https://nodepop.cristianespes.com/apiv1/anuncios (Domain for the DevOps Infrastucture)
 
 #### Searching - GET Method
 
 To view all products, make a GET adding the token to: ?token=###tokenValue###
+
 http://localhost:3000/apiv1/anuncios?token=###tokenValue###
 
 To find that you want, you can search directly on the list of the all products.
@@ -158,7 +163,8 @@ Or you can add the following filters:
 Warning (*): If you use this filter, first will be executed this filter and after the rest of the filters regardless of the order. The final result can be different than excepted.
 
 Note: The filters can be combined with each other:
-http://localhost:3000/apiv1/anuncios?token=###tokenValue###&fields=nombre precio foto -_id&sort=precio
+
+http://localhost:3000/apiv1/anuncios?token=###tokenValue###&fields=nombre%20precio%20foto%20-_id&sort=precio
 
 #### View Images of the Products - GET Method
 
@@ -178,6 +184,7 @@ To view the available tags of the products, you can use:
 #### Upload a new Advertisement - POST Method
 
 To upload a new advertisement, make a POST to: /apiv1/anuncios
+
 http://localhost:3000/apiv1/anuncios
 
 Insert the followings fields:
@@ -191,6 +198,7 @@ Insert the followings fields:
 #### Update an Advertisement - PUT Method
 
 To update an advertisement, make a PUT to: /apiv1/anuncios/###advertisementID###
+
 http://localhost:3000/apiv1/anuncios/###advertisementID###
 
 Insert the new content of the fields to be modified:
@@ -206,6 +214,7 @@ Warning (*): This will remove all previous tags and only show the new tags inser
 #### Delete an Advertisement - DELETE Method
 
 To delete an advertisement, make a DELETE to: /apiv1/anuncios/###advertisementID###
+
 http://localhost:3000/apiv1/anuncios/###advertisementID###
 
 -------------------------------------------------------------------------------
